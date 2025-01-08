@@ -1,7 +1,7 @@
 import fs from "fs/promises"
 import os from "os"
 import * as path from "path"
-import simpleGit from "simple-git"
+import simpleGit, { SimpleGit } from "simple-git"
 import * as vscode from "vscode"
 import { ClineProvider } from "../../core/webview/ClineProvider"
 import { fileExistsAtPath } from "../../utils/fs"
@@ -105,6 +105,21 @@ class CheckpointTracker {
 
 			await git.addConfig("core.worktree", this.cwd) // sets the working tree to the current workspace
 
+			// Get LFS patterns from workspace if they exist
+			let lfsPatterns: string[] = []
+			try {
+				const attributesPath = path.join(this.cwd, ".gitattributes")
+				if (await fileExistsAtPath(attributesPath)) {
+					const attributesContent = await fs.readFile(attributesPath, "utf8")
+					lfsPatterns = attributesContent
+						.split("\n")
+						.filter((line) => line.includes("filter=lfs"))
+						.map((line) => line.split(" ")[0].trim())
+				}
+			} catch (error) {
+				console.warn("Failed to read .gitattributes:", error)
+			}
+
 			// Add basic excludes directly in git config, while respecting any .gitignore in the workspace
 			// .git/info/exclude is local to the shadow git repo, so it's not shared with the main repo - and won't conflict with user's .gitignore
 			// TODO: let user customize these
@@ -198,6 +213,7 @@ class CheckpointTracker {
 					"npm-debug.log*",
 					"yarn-debug.log*",
 					"yarn-error.log*",
+					...lfsPatterns,
 				].join("\n"),
 			)
 
@@ -205,10 +221,8 @@ class CheckpointTracker {
 			await git.addConfig("user.name", "Cline Checkpoint")
 			await git.addConfig("user.email", "noreply@example.com")
 
+			await this.addAllFiles(git)
 			// Initial commit (--allow-empty ensures it works even with no files)
-			await this.renameNestedGitRepos(true)
-			await git.add(".")
-			await this.renameNestedGitRepos(false)
 			await git.commit("initial commit", { "--allow-empty": null })
 
 			return gitPath
@@ -235,9 +249,7 @@ class CheckpointTracker {
 		try {
 			const gitPath = await this.getShadowGitPath()
 			const git = simpleGit(path.dirname(gitPath))
-			await this.renameNestedGitRepos(true)
-			await git.add(".")
-			await this.renameNestedGitRepos(false)
+			await this.addAllFiles(git)
 			const result = await git.commit("checkpoint", {
 				"--allow-empty": null,
 			})
@@ -300,9 +312,7 @@ class CheckpointTracker {
 		}
 
 		// Stage all changes so that untracked files appear in diff summary
-		await this.renameNestedGitRepos(true)
-		await git.add(".")
-		await this.renameNestedGitRepos(false)
+		await this.addAllFiles(git)
 
 		const diffSummary = rhsHash ? await git.diffSummary([`${baseHash}..${rhsHash}`]) : await git.diffSummary([baseHash])
 
@@ -349,8 +359,19 @@ class CheckpointTracker {
 		return result
 	}
 
+	private async addAllFiles(git: SimpleGit) {
+		await this.renameNestedGitRepos(true)
+		try {
+			await git.add(".")
+		} catch (error) {
+			console.error("Failed to add files to git:", error)
+		} finally {
+			await this.renameNestedGitRepos(false)
+		}
+	}
+
 	// Since we use git to track checkpoints, we need to temporarily disable nested git repos to work around git's requirement of using submodules for nested repos.
-	async renameNestedGitRepos(disable: boolean) {
+	private async renameNestedGitRepos(disable: boolean) {
 		// Find all .git directories that are not at the root level
 		const gitPaths = await globby("**/.git" + (disable ? "" : GIT_DISABLED_SUFFIX), {
 			cwd: this.cwd,
