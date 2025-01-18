@@ -1,6 +1,7 @@
 import { VSCodeButton, VSCodeLink } from "@vscode/webview-ui-toolkit/react"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
+import { Trans } from "react-i18next"
 
 interface AnnouncementProps {
 	version: string
@@ -66,15 +67,13 @@ const Announcement = ({ version, hideAnnouncement }: AnnouncementProps) => {
 				}}
 			/>
 			<p style={{ margin: "0" }}>
-				{t("joinOur")}{" "}
-				<VSCodeLink style={{ display: "inline" }} href="https://discord.gg/cline">
-					{t("discord")}
-				</VSCodeLink>{" "}
-				{t("or")}{" "}
-				<VSCodeLink style={{ display: "inline" }} href="https://www.reddit.com/r/cline/">
-					{t("reddit")}
-				</VSCodeLink>{" "}
-				{t("forMoreUpdates")}
+				<Trans
+					i18nKey="announcement.joinOurCommunities"
+					components={{
+						DiscordLink: <VSCodeLink href="https://discord.gg/cline">Discord</VSCodeLink>,
+						RedditLink: <VSCodeLink href="https://www.reddit.com/r/cline/">Reddit</VSCodeLink>,
+					}}
+				/>
 			</p>
 		</div>
 	)
