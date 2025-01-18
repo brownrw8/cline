@@ -21,10 +21,10 @@ const LanguageOptions = () => {
 					value={i18n.resolvedLanguage}
 					style={{ width: "100%" }}
 					onChange={changeLanguage}>
-					<VSCodeOption value="en">{t("english")}</VSCodeOption>
-					<VSCodeOption value="de">{t("german")}</VSCodeOption>
-					<VSCodeOption value="zh">{t("chinese")}</VSCodeOption>
-					<VSCodeOption value="ja">{t("japanese")}</VSCodeOption>
+					<VSCodeOption value="en">English</VSCodeOption>
+					<VSCodeOption value="de">Deutsch</VSCodeOption>
+					<VSCodeOption value="zh">中文</VSCodeOption>
+					<VSCodeOption value="ja">日本語</VSCodeOption>
 				</VSCodeDropdown>
 			</div>
 		</div>
