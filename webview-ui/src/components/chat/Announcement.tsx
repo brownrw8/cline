@@ -70,8 +70,8 @@ const Announcement = ({ version, hideAnnouncement }: AnnouncementProps) => {
 				<Trans
 					i18nKey="announcement.joinOurCommunities"
 					components={{
-						DiscordLink: <VSCodeLink href="https://discord.gg/cline">Discord</VSCodeLink>,
-						RedditLink: <VSCodeLink href="https://www.reddit.com/r/cline/">Reddit</VSCodeLink>,
+						DiscordLink: <VSCodeLink href="https://discord.gg/cline" />,
+						RedditLink: <VSCodeLink href="https://www.reddit.com/r/cline/" />,
 					}}
 				/>
 			</p>
