@@ -10,7 +10,7 @@
 		"seeNewChangesTitle": "新しい変更を見る",
 		"seeNewChangesDescription": "最新の変更を表示します。",
 		"seeDemo": "デモを見る",
-		"joinOurCommunities": "最新情報を入手するには、 私たちの <DiscordLink>Discord</DiscordLink> または <RedditLink>Reddit</RedditLink> に参加してください ！"
+		"joinOurCommunities": "最新情報を入手するには、私たちの <DiscordLink>Discord</DiscordLink> または <RedditLink>Reddit</RedditLink> に参加してください！"
 	},
 	"settingsView": {
 		"settings": "設定",
