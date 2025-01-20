@@ -23,7 +23,8 @@ const LanguageOptions = () => {
 					onChange={changeLanguage}>
 					<VSCodeOption value="en">English</VSCodeOption>
 					<VSCodeOption value="de">Deutsch</VSCodeOption>
-					<VSCodeOption value="zh">中文</VSCodeOption>
+					<VSCodeOption value="zh-CN">中文(简体)</VSCodeOption>
+					<VSCodeOption value="zh-TW">中文(繁體)</VSCodeOption>
 					<VSCodeOption value="ja">日本語</VSCodeOption>
 				</VSCodeDropdown>
 			</div>
