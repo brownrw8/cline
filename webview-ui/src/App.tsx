@@ -8,7 +8,7 @@ import WelcomeView from "./components/welcome/WelcomeView"
 import { ExtensionStateContextProvider, useExtensionState } from "./context/ExtensionStateContext"
 import { vscode } from "./utils/vscode"
 import McpView from "./components/mcp/McpView"
-import {useTranslation} from "react-i18next"
+import { useTranslation } from "react-i18next"
 
 const AppContent = () => {
 	const { didHydrateState, showWelcome, shouldShowAnnouncement, localeLanguage } = useExtensionState()

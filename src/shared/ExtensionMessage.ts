@@ -45,7 +45,7 @@ export interface ExtensionState {
 	taskHistory: HistoryItem[]
 	shouldShowAnnouncement: boolean
 	autoApprovalSettings: AutoApprovalSettings
-	browserSettings: BrowserSettings,
+	browserSettings: BrowserSettings
 	localeLanguage: string
 }
 
