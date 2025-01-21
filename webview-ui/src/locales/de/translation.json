@@ -10,11 +10,7 @@
 		"seeNewChangesTitle": "Neue Änderungen anzeigen",
 		"seeNewChangesDescription": "Sehen Sie sich die neuesten Änderungen an.",
 		"seeDemo": "Demo ansehen",
-		"joinOur": "Treten Sie unserem",
-		"discord": "Discord",
-		"or": "oder",
-		"reddit": "Reddit",
-		"forMoreUpdates": "für weitere Updates bei."
+		"joinOurCommunities": "Tritt unserem <DiscordLink>Discord</DiscordLink> oder <RedditLink>Reddit</RedditLink> bei für weitere Updates!"
 	},
 	"settingsView": {
 		"settings": "Einstellungen",

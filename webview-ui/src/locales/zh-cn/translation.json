@@ -11,10 +11,7 @@
 		"seeNewChangesDescription": "查看最新更改。",
 		"seeDemo": "查看演示",
 		"joinOur": "加入我们的",
-		"discord": "Discord",
-		"or": "或",
-		"reddit": "Reddit",
-		"forMoreUpdates": "以获取更多更新。"
+		"joinOurCommunities": "加入我们的 <DiscordLink>Discord</DiscordLink> 或 <RedditLink>Reddit</RedditLink> 以获取更多更新。"
 	},
 	"settingsView": {
 		"settings": "设置",
