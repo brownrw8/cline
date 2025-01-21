@@ -9,7 +9,7 @@ interface AnnouncementProps {
 }
 
 const Announcement = ({ version, hideAnnouncement }: AnnouncementProps) => {
-	const { t, i18n, ready } = useTranslation("translation", { keyPrefix: "announcement", useSuspense: false })
+	const { t } = useTranslation("translation", { keyPrefix: "announcement", useSuspense: false })
 
 	const minorVersion = version.split(".").slice(0, 2).join(".") // 2.0.0 -> 2.0
 	return (
