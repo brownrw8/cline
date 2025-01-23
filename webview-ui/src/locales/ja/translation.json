@@ -8,12 +8,12 @@
 		"done": "完了",
 		"language": "言語",
 		"customInstructions": "カスタム指示",
-		"customInstructionsPlaceholder": "例: \"最後に単体テストを実行する\", \"async/awaitを使用してTypeScriptを使用する\", \"日本語で話す\"",
+		"customInstructionsPlaceholder": "例: \"最後に単体テストを実行してください\", \"TypeScript では async/await を使用してください\", \"日本語で話してください\"",
 		"customInstructionsDescription": "これらの指示は、各リクエストと共に送信されるシステムプロンプトの最後に追加されます。",
 		"debug": "デバッグ",
-		"resetState": "状態をリセット",
-		"resetStateDescription": "これにより、拡張機能のすべてのグローバル状態と秘密のストレージがリセットされます。",
-		"feedback": "ご質問やフィードバックがある場合は、気軽に問題を開いてください",
+		"resetState": "stateを初期化",
+		"resetStateDescription": "これにより、拡張機能のすべての Global state と Secret storage が初期化されます。",
+		"feedback": "ご質問やフィードバックがある場合は、気軽に Issue を作成してください。",
 		"version": "バージョン"
 	},
 	"apiOptions": {
